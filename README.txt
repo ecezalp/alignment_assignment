@@ -1,7 +1,7 @@
 
-Please run 'ruby run.rb' on your terminal after cloning the file
+Please run 'ruby run.rb' on your terminal after cloning the file.
 
-I am including secret.rb for the sake of convenience
+I am including secret.rb for the sake of convenience.
 
 Currently the error that I am getting is this:
 
