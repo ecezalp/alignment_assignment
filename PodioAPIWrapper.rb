@@ -1,7 +1,4 @@
-require 'rubygems'
 require 'podio'
-require 'json'
-require 'pry'
 
 require './secret'
 
