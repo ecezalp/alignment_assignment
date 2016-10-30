@@ -1,26 +1,25 @@
 require 'podio'
-
 require './secret'
 
 class PodioAPIWrapper
-    include AppSecrets
     attr_accessor :fetched_items, :modified_items
+    include AppSecrets
 
-    def initialize
+    def initialize(key, secret, username, password)
         Podio.setup(
-            :api_key    => SECRETS['api_key'],    
-            :api_secret => SECRETS['api_secret']
+            :api_key    => key,    
+            :api_secret => secret
             )
         Podio.client.authenticate_with_credentials(
-            SECRETS['username'], 
-            SECRETS['password']
+            username, 
+            password
             )
         @fetched_items = []
         @modified_items = []
     end
 
-    def fetch_items_from_app_1 
-        @fetched_items = Podio::Item.find_all(SECRETS['app_1_id'])
+    def fetch_items_from_app(app_id)
+        @fetched_items = Podio::Item.find_all(app_id)
     end
 
     def select_items_with_confirmed_dates
@@ -49,9 +48,9 @@ class PodioAPIWrapper
         end
     end
 
-    def post_modified_items_to_app_2
+    def post_items_to_app(app_id)
         @modified_items.each do |item|
-            Podio::Item.create(SECRETS['app_2_id'], {
+            Podio::Item.create(app_id, {
                 fields: item["fields"]
             })
         end
