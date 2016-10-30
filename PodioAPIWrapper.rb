@@ -1,9 +1,7 @@
 require 'podio'
-require './secret'
 
 class PodioAPIWrapper
     attr_accessor :fetched_items, :modified_items
-    include AppSecrets
 
     def initialize(key, secret, username, password)
         Podio.setup(
